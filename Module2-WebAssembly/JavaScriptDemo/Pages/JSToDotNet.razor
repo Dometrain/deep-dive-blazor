@@ -1,0 +1,12 @@
+﻿@page "/jstodotnet"
+@using JavaScriptDemo.Services
+
+<button @onclick="ListenToShortcuts">Start listening to shortcuts</button>
+
+@code{
+    void ListenToShortcuts()
+    {
+        InteropService.SetupShortcuts();
+    }
+   
+}

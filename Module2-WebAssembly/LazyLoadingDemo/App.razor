@@ -1,0 +1,49 @@
+﻿@using System.Reflection
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@inject LazyAssemblyLoader AssemblyLoader
+
+<Router AppAssembly="@typeof(App).Assembly"
+        AdditionalAssemblies="lazyLoadedAssemblies"
+        OnNavigateAsync="OnNavigateAsync">
+    <Navigating>
+        <LayoutView Layout="typeof(MainLayout)">
+            <div class="lds-heart"><div></div></div>
+        </LayoutView>
+    </Navigating>
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@code {
+    private List<Assembly> lazyLoadedAssemblies = new();
+
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+        {
+            if (args.Path == "admin" || args.Path == "lazyloaded")
+            {
+                var dllName = "LazyLoadedComponents.wasm";
+                if (!lazyLoadedAssemblies.Any())
+                {
+                    var assemblies = await AssemblyLoader.LoadAssembliesAsync(new[] { dllName });
+                    lazyLoadedAssemblies.AddRange(assemblies);
+                    await Task.Delay(5000);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            //Log stuff
+        }
+    }
+
+}

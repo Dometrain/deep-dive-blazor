@@ -1,0 +1,36 @@
+@using Microsoft.JSInterop
+@using BlazorD3JS.Models
+@using System.Runtime.InteropServices.JavaScript
+@using System.Text.Json
+
+<div id="@Id"></div>
+
+@code
+{
+
+    [Parameter, EditorRequired]
+    public required List<BarChartModel> Data { get; set; }
+
+    [Parameter]
+    public string Id { get; set; } = "BarChart" + Guid.NewGuid().ToString();
+    [Parameter]
+    public int Width { get; set; } = 400;
+    [Parameter]
+    public int Height { get; set; } = 400;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (OperatingSystem.IsBrowser()) //This only works when running in the browser
+        {
+            if (Data.Any())
+            {
+               
+                await JSHost.ImportAsync("BlazorD3JSModule", "/_content/BlazorD3JS/BlazorD3JS.js");
+                string jsonData = JsonSerializer.Serialize(Data);
+                BlazorD3JSInterop.CreateBarChart(Id, jsonData);
+            }
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+}

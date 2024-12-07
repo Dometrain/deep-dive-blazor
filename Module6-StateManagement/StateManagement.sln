@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35424.110
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonFluxorDemo", "NonFluxorDemo\NonFluxorDemo.csproj", "{7A0F8157-E6BF-4303-8CF0-61A5BAE0B61E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeWarpStateDemo", "TimeWarpStateDemo\TimeWarpStateDemo.csproj", "{775C774B-46AB-4E5A-ABC6-E43B5D7EE292}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 SharedState", "5 SharedState", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 Timewarp.State", "4 Timewarp.State", "{6825E213-9F06-4AA1-828D-58A974D07EE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorState.Client", "SharedState\BlazorState.Client\BlazorState.Client.csproj", "{11A47EC5-ABAB-D541-FE27-4223F0378C70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorState.Server", "SharedState\BlazorState.Server\BlazorState.Server.csproj", "{BBA10AB4-1C76-B4A4-B323-58CAD0EAA47E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorState.Shared", "SharedState\BlazorState.Shared\BlazorState.Shared.csproj", "{64F3B26F-CBB7-E068-386F-FC5E1FBCC877}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedStateDemo", "SharedStateDemo\SharedStateDemo\SharedStateDemo.csproj", "{F2257C40-8566-4460-8235-18E5D929E5F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedStateDemo.Client", "SharedStateDemo\SharedStateDemo.Client\SharedStateDemo.Client.csproj", "{A918606D-3F70-41BA-9E8F-781EA3CD4009}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxorDemo", "FluxorDemo\FluxorDemo.csproj", "{2119B097-CD59-DB9F-8DCC-8F97BB6DC942}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 Fluxor", "2 Fluxor", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 Non Fluxor", "3 Non Fluxor", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A0F8157-E6BF-4303-8CF0-61A5BAE0B61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0F8157-E6BF-4303-8CF0-61A5BAE0B61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0F8157-E6BF-4303-8CF0-61A5BAE0B61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0F8157-E6BF-4303-8CF0-61A5BAE0B61E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{775C774B-46AB-4E5A-ABC6-E43B5D7EE292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{775C774B-46AB-4E5A-ABC6-E43B5D7EE292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{775C774B-46AB-4E5A-ABC6-E43B5D7EE292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{775C774B-46AB-4E5A-ABC6-E43B5D7EE292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A47EC5-ABAB-D541-FE27-4223F0378C70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A47EC5-ABAB-D541-FE27-4223F0378C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A47EC5-ABAB-D541-FE27-4223F0378C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A47EC5-ABAB-D541-FE27-4223F0378C70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBA10AB4-1C76-B4A4-B323-58CAD0EAA47E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA10AB4-1C76-B4A4-B323-58CAD0EAA47E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBA10AB4-1C76-B4A4-B323-58CAD0EAA47E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBA10AB4-1C76-B4A4-B323-58CAD0EAA47E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64F3B26F-CBB7-E068-386F-FC5E1FBCC877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F3B26F-CBB7-E068-386F-FC5E1FBCC877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F3B26F-CBB7-E068-386F-FC5E1FBCC877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F3B26F-CBB7-E068-386F-FC5E1FBCC877}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2257C40-8566-4460-8235-18E5D929E5F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2257C40-8566-4460-8235-18E5D929E5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2257C40-8566-4460-8235-18E5D929E5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2257C40-8566-4460-8235-18E5D929E5F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A918606D-3F70-41BA-9E8F-781EA3CD4009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A918606D-3F70-41BA-9E8F-781EA3CD4009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A918606D-3F70-41BA-9E8F-781EA3CD4009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A918606D-3F70-41BA-9E8F-781EA3CD4009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2119B097-CD59-DB9F-8DCC-8F97BB6DC942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2119B097-CD59-DB9F-8DCC-8F97BB6DC942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2119B097-CD59-DB9F-8DCC-8F97BB6DC942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2119B097-CD59-DB9F-8DCC-8F97BB6DC942}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7A0F8157-E6BF-4303-8CF0-61A5BAE0B61E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{775C774B-46AB-4E5A-ABC6-E43B5D7EE292} = {6825E213-9F06-4AA1-828D-58A974D07EE4}
+		{11A47EC5-ABAB-D541-FE27-4223F0378C70} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{BBA10AB4-1C76-B4A4-B323-58CAD0EAA47E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{64F3B26F-CBB7-E068-386F-FC5E1FBCC877} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{F2257C40-8566-4460-8235-18E5D929E5F4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{A918606D-3F70-41BA-9E8F-781EA3CD4009} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{2119B097-CD59-DB9F-8DCC-8F97BB6DC942} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBF1F9EC-B821-477D-B16A-64772D491399}
+	EndGlobalSection
+EndGlobal

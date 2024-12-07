@@ -1,0 +1,26 @@
+﻿@page "/"
+@using JavaScriptDemo.Services
+<button @onclick="CallJavaScript">Call JavaScript</button>
+<button @onclick="CallAlert">Alert</button> 
+<button @onclick="CallTimezone">Get Timezone</button>
+@message
+
+@code{
+    string message = "";
+    void CallJavaScript()
+    {
+        message = InteropService.GetGreeting("Rocket Raccoon");
+    }
+
+
+    void CallAlert()
+    {
+        InteropService.Alert("This is an alert");
+    }
+
+    void CallTimezone()
+    {
+        var tz=InteropService.GetTimezone();
+        InteropService.Alert(tz);
+    }
+}

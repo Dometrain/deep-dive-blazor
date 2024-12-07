@@ -1,0 +1,49 @@
+﻿@page "/"
+@using FluxorDemo.Services
+@inject TodoService service
+@implements IDisposable
+<h1>Todo App</h1>
+
+<input @bind="newTodoText" placeholder="Enter a new todo" />
+<button @onclick="AddTodo">Add Todo</button>
+
+<ul>
+    @foreach (var todo in service.Items)
+    {
+        <li>
+            <input type="checkbox" checked="@todo.IsCompleted" @onclick="() => ToggleTodo(todo.Id)" />
+            <span style="text-decoration: @(todo.IsCompleted ? "line-through" : "none")">@todo.Text</span>
+        </li>
+    }
+</ul>
+
+@code {
+    private string newTodoText = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        //No need to grab as separate variable
+        service.GetTodoItemsAsync();
+        service.ItemsChanged += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+
+    private async Task AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodoText))
+        {
+            await service.AddTodoAsync(newTodoText);
+            newTodoText = string.Empty;
+        }
+    }
+
+    private async Task ToggleTodo(Guid todoId)
+    {
+        await service.ToogleTodoAsync(todoId);
+    }
+
+    public void Dispose()
+    {
+        service.ItemsChanged -= StateHasChanged;
+    }
+}

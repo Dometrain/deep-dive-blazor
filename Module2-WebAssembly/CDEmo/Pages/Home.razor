@@ -1,0 +1,12 @@
+﻿@page "/"
+@using System.Runtime.InteropServices
+
+<p>
+    This is the result oc the C method addin 42 and 1295. <br />
+    @add(42,1295)
+</p>
+
+@code {
+    [DllImport("Addition")]
+    static extern int add(int a, int b);
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AngulardemoClient</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        .linear-progress:empty
+        {
+            display:block;
+            background: silver;
+            width:200px;
+            height: 1rem;
+            border-radius: 10rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .linear-progress:empty:after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: blue;
+            scale: var(--blazor-load-percentage, 0%) 100%;
+            transform-origin: left top;
+            transition: scale ease-out 0.5s;
+        }
+
+    </style>
+</head>
+<body>
+    <app-root></app-root>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+</html>

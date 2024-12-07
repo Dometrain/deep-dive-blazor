@@ -1,0 +1,68 @@
+﻿@page "/counter"
+@using BlazorState
+@rendermode InteractiveWebAssembly
+@inject ISessionManager sessions
+@implements IDisposable
+
+<PageTitle>Counter</PageTitle>
+
+<p>Render location: @RendererInfo.Name</p>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount" disabled="@(!RendererInfo.IsInteractive)">
+    Click me
+</button>
+
+<NavigationLock ConfirmExternalNavigation="false" OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+@code {
+    private int currentCount = 0;
+    private Session session;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (RendererInfo.IsInteractive)
+        {
+            session = await sessions.GetSession();
+            try
+            {
+                if (session.Keys.Contains("currentcount"))
+                {
+                    currentCount = Convert.ToInt32(session["currentcount"]);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        session["currentcount"] = currentCount.ToString();
+    }
+
+    private async Task OnBeforeInternalNavigation(LocationChangingContext context)
+    {
+        var isBrowser = OperatingSystem.IsBrowser();
+        if (isBrowser)
+        {
+            await sessions.UpdateSession(session);
+        }
+        context.PreventNavigation();
+    }
+
+    public void Dispose()
+    {
+        var isBrowser = OperatingSystem.IsBrowser();
+        if (isBrowser)
+        {
+            sessions.UpdateSession(session);
+        }
+    }
+}

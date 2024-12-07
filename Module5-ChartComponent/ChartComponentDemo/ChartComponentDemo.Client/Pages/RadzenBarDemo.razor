@@ -1,0 +1,33 @@
+﻿@page "/RadzenBar"
+@using BlazorD3JS
+@using BlazorD3JS.Models
+@using ChartComponentDemo.Client.Components
+
+<PageTitle>Home</PageTitle>
+
+<h1>Bar chart</h1>
+
+<RadzenBarChart Data="@data" Style="width:700px"></RadzenBarChart>
+<button @onclick="@GenerateData">Generate Data</button>
+
+@code {
+
+    List<BarChartModel> data = new ();
+    public void GenerateData()
+    {
+        var random = new Random();
+        data = new List<BarChartModel>
+        {
+            new BarChartModel { Name = "A", Value = random.Next(10, 100) },
+            new BarChartModel { Name = "B", Value = random.Next(10, 100) },
+            new BarChartModel { Name = "C", Value = random.Next(10, 100) },
+            new BarChartModel { Name = "D", Value = random.Next(10, 100) },
+            new BarChartModel { Name = "E", Value = random.Next(10, 100) },
+        };
+    }
+    protected override Task OnInitializedAsync()
+    {
+        GenerateData();
+        return base.OnInitializedAsync();
+    }
+}

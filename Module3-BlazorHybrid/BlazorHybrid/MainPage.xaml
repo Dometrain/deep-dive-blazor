@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BlazorHybrid"
+             xmlns:pages="clr-namespace:BlazorHybrid.Components.Pages"
+             xmlns:components="clr-namespace:BlazorHybrid.Components"
+             x:Class="BlazorHybrid.MainPage">
+    <Shell.FlyoutBackground>
+        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#052767" Offset="0.0" />
+            <GradientStop Color="#3a0647" Offset="0.7" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackground>
+    <!--<ShellContent Title="Home">
+        <ContentPage>
+            <BlazorWebView BackgroundColor="Transparent" HostPage="wwwroot/index.html">
+                <BlazorWebView.RootComponents>
+                    <RootComponent Selector="#app" ComponentType="{x:Type local:Components.Routes}" />
+                </BlazorWebView.RootComponents>
+            </BlazorWebView>
+        </ContentPage>
+    </ShellContent>-->
+
+    <TabBar>
+        <components:BlazorShellContent
+        Icon="home.png"
+        Title="Home"
+        ComponentType="{x:Type pages:Home}"/>
+
+    <components:BlazorShellContent
+        Icon="counter.png"
+        Title="Counter"
+        ComponentType="{x:Type pages:Counter}"/>
+
+    <components:BlazorShellContent
+        Icon="weather.png"
+        Title="Weather"
+        ComponentType="{x:Type pages:Weather}"/>
+    </TabBar>
+
+</Shell>

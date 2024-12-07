@@ -1,0 +1,48 @@
+﻿@page "/servercounter"
+@using BlazorState
+@rendermode InteractiveServer
+@inject ISessionManager sessions
+
+<PageTitle>Server Counter</PageTitle>
+
+<p>Render location: @RendererInfo.Name</p>
+
+<p>Cookie: @sessionId</p>
+
+<h1>Server Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+    private Session session;
+    private string? sessionId;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            session = await sessions.GetSession();
+            try
+            {
+                if (session.Keys.Contains("currentcount"))
+                {
+                    currentCount = Convert.ToInt32(session["currentcount"]);
+                }
+                sessionId = session.SessionId;
+            }
+            catch (Exception ex)
+            {
+            }
+            StateHasChanged();
+        }
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        session["currentcount"] = currentCount.ToString();
+    }
+}

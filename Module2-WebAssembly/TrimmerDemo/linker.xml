@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<linker>
+  <assembly fullname="TrimmerDemo">
+    <namespace fullname="TrimmerDemo.Layout" preserve="all" />
+    <namespace fullname="TrimmerDemo.Pages" preserve="all" />
+  </assembly>
+
+  <assembly fullname="TrimmedLibrary">
+    <type fullname="TrimmedLibrary.TrimmableClass" />
+    <type fullname="TrimmedLibrary.Trimmed" />
+  </assembly>
+</linker>

@@ -1,0 +1,19 @@
+﻿@using BlazorD3JS.Models
+@using Radzen.Blazor
+
+<RadzenChart Style="@Style">
+    <RadzenColumnSeries Data="@Data" CategoryProperty="Name" LineType="LineType.Dashed" ValueProperty="Value">
+        <RadzenSeriesDataLabels />
+    </RadzenColumnSeries>
+    <RadzenColumnOptions Radius="5" />
+</RadzenChart>
+
+@code
+{
+    [Parameter]
+    public string Style { get; set; } = "";
+    
+    [Parameter, EditorRequired]
+    public required List<BarChartModel> Data { get; set; }
+
+}

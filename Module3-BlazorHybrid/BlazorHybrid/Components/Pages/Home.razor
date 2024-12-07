@@ -1,0 +1,23 @@
+﻿@page "/"
+@using BlazorHybrid.Services
+@inject NativeService nativeservice
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+<button @onclick="OpenNativePageAsync">Open native page</button>
+<button @onclick="ToggleFlashlightAsync">Toggle Flashlight</button>
+@code {
+    private async Task OpenNativePageAsync()
+    {
+        await Shell.Current.GoToAsync(nameof(NewPage1));
+    }
+
+    bool toogleFlashlight;
+
+    private async Task ToggleFlashlightAsync()
+    {
+        toogleFlashlight = !toogleFlashlight;
+
+        await nativeservice.ToggleFlashlightAsync(toogleFlashlight);
+    }
+}

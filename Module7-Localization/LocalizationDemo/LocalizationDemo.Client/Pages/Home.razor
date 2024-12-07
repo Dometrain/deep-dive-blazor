@@ -1,0 +1,11 @@
+﻿@page "/"
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Resources> Localizer
+@using System.Globalization
+
+<PageTitle>@Localizer["Home"]</PageTitle>
+
+<h1>@Localizer["Hello, world!"]</h1>
+<b>CurrentCulture</b>: @CultureInfo.CurrentCulture
+@Localizer["Welcome"]
+

@@ -1,0 +1,54 @@
+﻿@page "/"
+<h3>Prime Number Calculation Demo</h3>
+<button @onclick="CalculatePrimes">Calculate Primes</button>
+<p>@status</p>
+<p>Time taken: @timeTaken ms</p>
+
+@code {
+    private string status = "Waiting...";
+    private long timeTaken;
+    private List<int> primeNumbers = new List<int>();
+
+    private void CalculatePrimes()
+    {
+        status = "Calculating...";
+        var stopwatch = new System.Diagnostics.Stopwatch();
+
+        // Start measuring time
+        stopwatch.Start();
+
+        primeNumbers = FindPrimes(2, 100000);  // Find primes between 2 and 100,000
+
+        // Stop the timer
+        stopwatch.Stop();
+        timeTaken = stopwatch.ElapsedMilliseconds;
+
+        status = $"Found {primeNumbers.Count} prime numbers!";
+    }
+
+    private List<int> FindPrimes(int start, int end)
+    {
+        var primes = new List<int>();
+
+        for (int number = start; number <= end; number++)
+        {
+            bool isPrime = true;
+
+            for (int i = 2; i <= Math.Sqrt(number); i++)
+            {
+                if (number % i == 0)
+                {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime)
+            {
+                primes.Add(number);
+            }
+        }
+
+        return primes;
+    }
+}

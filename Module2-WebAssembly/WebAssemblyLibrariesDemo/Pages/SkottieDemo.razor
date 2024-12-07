@@ -1,0 +1,61 @@
+﻿@page "/skottie-animation"
+@using SkiaSharp
+@using SkiaSharp.Skottie
+@using SkiaSharp.Views.Blazor
+@implements IDisposable
+@inject HttpClient Http
+
+<SKCanvasView @ref="_canvasView" OnPaintSurface="OnPaintSurface" Width="400" Height="400" />
+
+@code {
+    private SKCanvasView _canvasView;
+    private Animation? _animation;
+    private float _animationProgress = 0f;
+    private Timer _timer;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var stream = await Http.GetStreamAsync("/Animation - 1729951939334.json");
+        _animation = Animation.Create(stream);
+
+        // Set up a timer for the animation loop, refreshing approximately 60 FPS
+        _timer = new Timer(UpdateFrame, null, 0, 16);
+    }
+
+    private void UpdateFrame(object? state)
+    {
+        // Update the animation progress
+        _animationProgress += 0.01f;
+        if (_animationProgress >= 1f)
+            _animationProgress = 0f;
+
+        // Trigger the canvas to redraw
+        _canvasView?.Invalidate();
+    }
+
+    private void OnPaintSurface(SKPaintSurfaceEventArgs e)
+    {
+        var canvas = e.Surface.Canvas;
+        canvas.Clear(SKColors.White);
+
+        if (_animation != null)
+        {
+            // Define the animation bounds and center it on the canvas
+            var info = e.Info;
+            var scale = Math.Min(info.Width / _animation.Size.Width, info.Height / _animation.Size.Height);
+            var rect = SKRect.Create(400, 400);
+
+            // Render the Skottie animation at the current progress
+            _animation.SeekFrameTime(_animation.Duration * _animationProgress);
+            _animation.Render(canvas, rect);
+        }
+    }
+
+    public void Dispose()
+    {
+        // Dispose of the animation and timer
+        _animation?.Dispose();
+        _timer?.Dispose();
+    }
+}

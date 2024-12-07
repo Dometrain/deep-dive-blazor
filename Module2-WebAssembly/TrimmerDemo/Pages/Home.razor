@@ -1,0 +1,39 @@
+﻿@page "/"
+@using System.Diagnostics.CodeAnalysis
+@error
+
+<button @onclick="@(()=>TestTrim("TrimmedLibrary.TrimmableClass, TrimmedLibrary"))">TrimmableClass</button>
+<button @onclick="@(()=>TestTrim("TrimmedLibrary.Trimmed, TrimmedLibrary"))">Razor component</button>
+
+
+@code {
+
+    string error;
+    //[DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(TrimmedLibrary.TrimmableClass))]
+    private void TestTrim(string classname)
+    {
+        try
+        {
+            // Trying to load the type via reflection
+            var type = Type.GetType(classname);
+
+            if (type == null)
+            {
+                error = "Type not found! The linker likely removed it.";
+            }
+            else
+            {
+                var instance = Activator.CreateInstance(type);
+                var messageMethod = type.GetMethod("GetMessage");
+                var message = messageMethod?.Invoke(instance, null) as string;
+                error = $"Class found and says: {message}";
+            }
+        }
+        catch (Exception ex)
+        {
+            error = $"Failed to load class: {ex.Message}";
+        }
+
+
+    }
+}

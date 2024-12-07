@@ -1,0 +1,34 @@
+﻿@page "/RadzenPie"
+@using BlazorD3JS
+@using BlazorD3JS.Models
+@using ChartComponentDemo.Client.Components
+
+
+<PageTitle>Home</PageTitle>
+
+<h1>Pie chart</h1>
+
+<RadzenPieChart Data="@data"></RadzenPieChart>
+<button @onclick="@GenerateData">Generate Data</button>
+
+@code {
+
+    List<PieChartModel> data = new ();
+    public void GenerateData()
+    {
+        var random = new Random();
+        data = new List<PieChartModel>
+        {
+            new PieChartModel { Name = "A", Value = random.Next(10, 100) },
+            new PieChartModel { Name = "B", Value = random.Next(10, 100) },
+            new PieChartModel { Name = "C", Value = random.Next(10, 100) },
+            new PieChartModel { Name = "D", Value = random.Next(10, 100) },
+            new PieChartModel { Name = "E", Value = random.Next(10, 100) },
+        };
+    }
+    protected override Task OnInitializedAsync()
+    {
+        GenerateData();
+        return base.OnInitializedAsync();
+    }
+}

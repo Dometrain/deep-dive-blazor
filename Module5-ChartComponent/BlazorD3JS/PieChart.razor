@@ -1,0 +1,37 @@
+﻿@using BlazorD3JS.Models
+@using Microsoft.JSInterop
+@inject IJSRuntime jsruntime
+
+<div id="@Id" data-permanent></div>
+
+@code
+{
+
+    [Parameter,EditorRequired]
+    public required List<PieChartModel> Data { get; set; }
+
+    [Parameter]
+    public string Id { get; set; } = "PieChart" + Guid.NewGuid().ToString();
+    [Parameter]
+    public int Width { get; set; } = 400;
+    [Parameter]
+    public int Height { get; set; } = 400;
+
+    IJSObjectReference? jsmodule;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (jsmodule == null)
+        {
+            jsmodule = await jsruntime.InvokeAsync<IJSObjectReference>("import", "/_content/BlazorD3JS/PieChart.razor.js");
+        }
+        if (jsmodule != null && Data.Any())
+        {
+            //await jsmodule.InvokeVoidAsync("createPieChart", Id, Data, Width, Height);
+            await jsmodule.InvokeVoidAsync("createPieChartWithAnimation", Id, Data);
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+}

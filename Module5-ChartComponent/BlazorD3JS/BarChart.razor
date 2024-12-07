@@ -1,0 +1,41 @@
+@using Microsoft.JSInterop
+@using BlazorD3JS.Models
+@inject IJSRuntime jsruntime
+
+<div id="@Id" data-permanent>
+</div>
+
+<button @onclick="@(()=>StateHasChanged())">Refresh</button>
+
+@code
+{
+
+    [Parameter, EditorRequired]
+    public required List<BarChartModel> Data { get; set; }
+
+    [Parameter]
+    public string Id { get; set; } = "BarChart" + Guid.NewGuid().ToString();
+    [Parameter]
+    public int Width { get; set; } = 400;
+    [Parameter]
+    public int Height { get; set; } = 400;
+
+    IJSObjectReference? jsmodule;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (jsmodule == null)
+        {
+            jsmodule = await jsruntime.InvokeAsync<IJSObjectReference>("import", "/_content/BlazorD3JS/BarChart.razor.js");
+        }
+        if (jsmodule != null && Data.Any())
+        {
+            await jsmodule.InvokeVoidAsync("createBarChart", Id, Data, Width, Height);  
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+
+    
+}

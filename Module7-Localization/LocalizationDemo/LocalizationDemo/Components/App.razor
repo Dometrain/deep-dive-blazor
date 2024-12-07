@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
+    <link rel="stylesheet" href="@Assets["app.css"]" />
+    <link rel="stylesheet" href="@Assets["LocalizationDemo.styles.css"]" />
+    <ImportMap />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet @rendermode="InteractiveAuto" />
+</head>
+
+<body>
+    <Routes @rendermode="InteractiveAuto" />
+    <script src="_framework/blazor.web.js"></script>
+    <script>
+
+
+        window.cookieManager = {
+            getCultureCookie: () => {
+                const value = `; ${document.cookie}`;
+                const parts = value.split('; .AspNetCore.Culture=');
+                if (parts.length === 2) {
+                    return decodeURIComponent(parts.pop().split(';').shift());
+                }
+                
+                // Cookie doesn't exist, normalize the browser language and return the default culture
+                let browserLanguage = navigator.language || navigator.userLanguage; // Get browser language
+
+                // Normalize language to include region if it's missing
+                if (browserLanguage.length === 2) {
+                    // Map language to default region
+                    const languageMap = {
+                        sv: 'sv-SE',
+                        en: 'en-US',
+                        fr: 'fr-FR',
+                        de: 'de-DE',
+                        es: 'es-ES',
+                        // Add more mappings as needed
+                    };
+                    browserLanguage = languageMap[browserLanguage] || `${browserLanguage}-${browserLanguage.toUpperCase()}`;
+                }
+
+                return `c=${browserLanguage}|uic=${browserLanguage}`;
+            }
+        };
+    </script>
+</body>
+
+</html>

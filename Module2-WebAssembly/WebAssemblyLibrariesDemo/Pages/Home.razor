@@ -1,0 +1,28 @@
+﻿@page "/"
+@using SkiaSharp
+@using SkiaSharp.Views.Blazor
+
+
+<SKCanvasView OnPaintSurface="OnPaintSurface" Width="400" Height="400" />
+@code{
+    private void OnPaintSurface(SKPaintSurfaceEventArgs e)
+    {
+        var canvas = e.Surface.Canvas;
+        canvas.Clear(SKColors.CornflowerBlue);
+        // Define the paint for the square
+        using var paint = new SKPaint
+        {
+            Color = SKColors.Red,
+            IsAntialias = true
+        };
+
+        // Define the size and position of the square
+        var squareSize = 100;
+        var left = (e.Info.Width - squareSize) / 2;
+        var top = (e.Info.Height - squareSize) / 2;
+        var rect = new SKRect(left, top, left + squareSize, top + squareSize);
+
+        // Draw the square
+        canvas.DrawRect(rect, paint);
+    }
+}

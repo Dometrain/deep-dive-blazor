@@ -1,0 +1,48 @@
+﻿@page "/"
+@using Fluxor
+@using FluxorDemo.Actions
+@using FluxorDemo.State
+
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IState<TodoState> TodoState
+@inject IDispatcher Dispatcher
+
+<h1>Todo App</h1>
+
+<input @bind="newTodoText" placeholder="Enter a new todo" />
+<button @onclick="AddTodo">Add Todo</button>
+
+<ul>
+    @foreach (var todo in TodoState.Value.Todos)
+    {
+        <li>
+            <input type="checkbox" checked="@todo.IsCompleted" @onclick="() => ToggleTodo(todo.Id)" />
+            <span style="text-decoration: @(todo.IsCompleted ? "line-through" : "none")">@todo.Text</span>
+        </li>
+    }
+</ul>
+
+@code {
+    private string newTodoText="";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Dispatcher.Dispatch(new FetchTodosAction());
+    }
+
+
+    private void AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodoText))
+        {
+            Dispatcher.Dispatch(new AddTodoAction(newTodoText));
+            newTodoText = string.Empty;
+        }
+    }
+
+    private void ToggleTodo(Guid todoId)
+    {
+        Dispatcher.Dispatch(new ToggleTodoAction(todoId));
+    }
+}

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35424.110
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartComponentDemo.Client", "ChartComponentDemo\ChartComponentDemo.Client\ChartComponentDemo.Client.csproj", "{95E54B19-8C81-408F-AF87-45C8E9FF7C89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorD3JS", "BlazorD3JS\BlazorD3JS.csproj", "{75D197C1-BC77-4828-BB20-5540798AC4FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartComponentDemo", "ChartComponentDemo\ChartComponentDemo\ChartComponentDemo.csproj", "{7D3C547A-8847-2975-F810-CCAE458A19CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95E54B19-8C81-408F-AF87-45C8E9FF7C89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E54B19-8C81-408F-AF87-45C8E9FF7C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E54B19-8C81-408F-AF87-45C8E9FF7C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E54B19-8C81-408F-AF87-45C8E9FF7C89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D197C1-BC77-4828-BB20-5540798AC4FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D197C1-BC77-4828-BB20-5540798AC4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D197C1-BC77-4828-BB20-5540798AC4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D197C1-BC77-4828-BB20-5540798AC4FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D3C547A-8847-2975-F810-CCAE458A19CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D3C547A-8847-2975-F810-CCAE458A19CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D3C547A-8847-2975-F810-CCAE458A19CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D3C547A-8847-2975-F810-CCAE458A19CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

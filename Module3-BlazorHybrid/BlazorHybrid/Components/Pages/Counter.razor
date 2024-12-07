@@ -1,0 +1,24 @@
+﻿@page "/counter"
+@using BlazorHybrid.Services
+@inject CounterService service
+@inject NativeService nativeservice
+<h1>Counter</h1>
+
+<p role="status">Current count: @service.Count</p>
+
+<button class="btn btn-primary" @onclick="IncrementCountAsync">Click me</button>
+
+@code {
+
+    private async Task IncrementCountAsync()
+    {
+        nativeservice.TriggerHapticFeedback();
+        await service.CountUpAsync();
+    }
+
+    protected override void OnInitialized()
+    {
+        service.CountingUp += async (currentcount) => await InvokeAsync(StateHasChanged);
+    }
+}
+

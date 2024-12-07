@@ -1,0 +1,30 @@
+﻿@page "/barchart"
+@using BlazorD3JS.Models
+@using BlazorD3JS
+@using static BlazorD3JS.PieChart
+
+<h1>Bar chart</h1>
+
+<BarChart Data="@data"></BarChart>
+<button @onclick="@GenerateData">Generate Data</button>
+
+@code {
+
+    List<BarChartModel> data = new ();
+    public void GenerateData()
+    {
+        var random = new Random();
+        data = new List<BarChartModel>() {
+            new BarChartModel { Name = "A", Value = random.Next(10, 100) },
+            new BarChartModel { Name = "B", Value = random.Next(10, 100) },
+            new BarChartModel { Name = "C", Value = random.Next(10, 100) },
+            new BarChartModel { Name = "D", Value = random.Next(10, 100) },
+            new BarChartModel { Name = "E", Value = random.Next(10, 100) },
+        };
+    }
+    protected override Task OnInitializedAsync()
+    {
+        GenerateData();
+        return base.OnInitializedAsync();
+    }
+}

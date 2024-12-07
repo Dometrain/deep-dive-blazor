@@ -1,0 +1,49 @@
+﻿@using System.Globalization
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<p>
+    <label>
+        Select your locale:
+        <select @bind="@selectedCulture" @bind:after="ApplySelectedCulture">
+            @foreach (var culture in supportedCultures)
+            {
+                <option value="@culture">@cultureDict[culture.Name]</option>
+            }
+        </select>
+    </label>
+</p>
+
+@code
+{
+    private Dictionary<string, string> cultureDict =
+        new()
+        {
+            { "en-US", "English (United States)" },
+            { "sv-SE", "Swedish (Sweden)" }
+        };
+
+    private CultureInfo[] supportedCultures => cultureDict.Select(c => new CultureInfo(c.Key)).ToArray();
+
+    private CultureInfo? selectedCulture;
+
+    protected override void OnInitialized()
+    {
+        selectedCulture = CultureInfo.CurrentCulture;
+    }
+
+    private void ApplySelectedCulture()
+    {
+        if (CultureInfo.CurrentCulture != selectedCulture)
+        {
+            var uri = new Uri(Navigation.Uri)
+                .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+            var cultureEscaped = Uri.EscapeDataString(selectedCulture?.Name ?? cultureDict.First().Key);
+            var uriEscaped = Uri.EscapeDataString(uri);
+
+            Navigation.NavigateTo(
+                $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
+                forceLoad: true);
+        }
+    }
+}

@@ -1,0 +1,48 @@
+﻿@page "/todo"
+@using TimeWarpStateDemo.Features.Todo
+@inherits TimeWarp.State.TimeWarpStateComponent
+
+<h1>Todo App</h1>
+
+<input @bind="newTodoText" placeholder="Enter a new todo" />
+<button @onclick="AddTodo">Add Todo</button>
+
+<ul>
+    @if (TodoState.Todos != null)
+    {
+
+        @foreach (var todo in TodoState.Todos)
+        {
+            <li>
+                <input type="checkbox" checked="@todo.IsCompleted" @onclick="() => ToggleTodo(todo.Id)" />
+                <span style="text-decoration: @(todo.IsCompleted ? "line-through" : "none")">@todo.Text</span>
+            </li>
+        }
+    }
+</ul>
+
+@code {
+    private string newTodoText = "";
+    private TodoState TodoState => GetState<TodoState>();
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await TodoState.FetchTodos();
+    }
+
+    private async Task AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodoText))
+        {
+            await TodoState.AddTodo(newTodoText);
+            newTodoText = string.Empty;
+        }
+    }
+
+    private async Task ToggleTodo(Guid todoId)
+    {
+        await TodoState.ToggleTodo(todoId);
+    }
+}

@@ -1,0 +1,16 @@
+﻿@using BlazorD3JS.Models
+@using Radzen.Blazor
+
+<RadzenChart>
+    <RadzenPieSeries Data="@Data" CategoryProperty="Name" ValueProperty="Value">
+        <RadzenSeriesDataLabels />
+    </RadzenPieSeries>
+</RadzenChart>
+
+@code
+{
+
+    [Parameter, EditorRequired]
+    public required List<PieChartModel> Data { get; set; }
+
+}
